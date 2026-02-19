@@ -1,11 +1,17 @@
 import Navbar from "./components/Navbar"
+import Home from "./pages/Home"
 
 
 const App = () => {
   return (
-    <div className=" h-screen w-screen flex bg-linear-to-br from-amber-50 to-amber-200">
+    <>
       <Navbar />
-    </div>
+      <div className="min-h-screen w-full flex bg-white/10 items-start justify-start pt-16">
+      <Home />
+    
+
+      </div>
+    </>
   )
 }
 
