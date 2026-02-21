@@ -26,7 +26,7 @@ const HeroSection = () => {
         <section className="relative min-h-screen w-full overflow-hidden bg-[#ffffff] flex items-center">
             {/* ── Ambient background glows ── */}
             <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-10 -left-40 h-150 w-150 rounded-full bg-cyan-500/5 blur-[120px]" />
+                <div className="absolute top-10 -left-40 h-150 w-150 rounded-full bg-cyan-500/5 blur-[120px]" />
                 <div className="absolute top-1/2 right-0 h-175 w-125 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-[140px]" />
                 <div className="absolute -bottom-10 left-1/3 h-75 w-100 rounded-full bg-green-600/5 blur-[100px]" />
 
@@ -35,8 +35,8 @@ const HeroSection = () => {
                     className="absolute inset-0 opacity-[0.10] bg-repeat"
                     style={{
                         backgroundImage: `
-              linear-gradient(rgba(63, 129, 154,0.5) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(63, 129, 154,0.5) 1px, transparent 1px)
+              linear-gradient(rgba(63, 129, 154,0.6) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(63, 129, 154,0.7) 1px, transparent 1px)
             `,
                         backgroundSize: "60px 60px",
                     }}
@@ -146,12 +146,12 @@ const HeroSection = () => {
 
                         {/* Floating image card */}
                         <motion.div
-                            animate={{ y: [0, -14, 0] }}
+                            animate={{ y: [2, -14, 3] }}
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                             className="relative z-10 w-full max-w-130"
                         >
                             {/* Outer ring */}
-                            <div className="rounded-3xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur-sm">
+                            <div className="">
                                 {/* Image */}
                                 <div className="relative overflow-hidden rounded-2xl">
                                     <img
@@ -160,23 +160,10 @@ const HeroSection = () => {
                                         className="aspect-4/3 w-full object-cover"
                                     />
                                     {/* Image overlay gradient */}
-                                    <div className="absolute inset-0 bg-linear-to-tr from-black/30 via-transparent to-cyan-400/10" />
+                                    <div className="absolute inset-0" />
                                 </div>
                             </div>
 
-                            {/* Decorative dot grid */}
-                            <div className="absolute -right-2 top-1/2 h-24 w-24 -translate-y-1/2">
-                                {[...Array(9)].map((_, i) => (
-                                    <div
-                                        key={i}
-                                        className="absolute h-1.5 w-1.5 rounded-full bg-cyan-400"
-                                        style={{
-                                            left: `${(i % 3) * 36}%`,
-                                            top: `${Math.floor(i / 3) * 36}%`,
-                                        }}
-                                    />
-                                ))}
-                            </div>
                         </motion.div>
                     </motion.div>
 
