@@ -88,14 +88,14 @@ const HeroSection = () => {
                             initial="hidden"
                             animate="visible"
                             custom={0.2}
-                            className="mb-6 text-3xl font-bold leading-[1.08] tracking-tight text-black sm:text-6xl lg:text-7xl"
+                            className="mb-6 text-3xl font-bold leading-[1.08] tracking-tight text-black sm:text-6xl lg:text-7xl pt-5"
                             style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
                         >
-                            Smart Pick
+                            Smart Picks
                             <br />
                             <span className="relative">
                                 <span className="bg-linear-to-r from-black via-cyan-400 to-cyan-600 bg-clip-text text-transparent italic">
-                                    Imagination
+                                    Smarter Decisions
                                 </span>
                                 {/* Underline accent */}
                             </span>
@@ -109,9 +109,7 @@ const HeroSection = () => {
                             custom={0.35}
                             className="mb-10 max-w-120 text-lg leading-relaxed text-black/70"
                         >
-                            Craft breathtaking digital experiences with a platform that puts
-                            creative power in your hands — fast, flexible, and built for
-                            visionaries.
+                            Tell us your budget and what matters most — camera, gaming, battery, or performance — and our AI will recommend the best phone instantly.
                         </motion.p>
 
                         {/* CTA Buttons */}
