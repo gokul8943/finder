@@ -6,7 +6,7 @@ const HeroSection = () => {
       className="relative w-screen h-dvh overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${heroImg})` }}
     >
-      <div className="absolute inset-0 bg-linear-to-b from-black/10 via-transparent to-black/20" />
+      <div className="absolute inset-0" />
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 gap-6">
         <h1 className="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight">
