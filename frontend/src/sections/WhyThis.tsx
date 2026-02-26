@@ -5,27 +5,27 @@ const features = [
     {
         id: "01",
         bold: "No more watching 10 YouTube videos",
-        color: "from-cyan-400 to-teal-400",
+        color: "from-cyan-400 to-cyan-400",
         delay: 0.2,
     },
     {
         id: "02",
         bold: "Unbiased recommendations",
-        color: "from-teal-400 to-cyan-500",
+        color: "from-cyan-400 to-cyan-500",
         delay: 0.4,
     },
     {
         id: "03",
         bold: "AI-powered analysis",
         rest: "",
-        color: "from-cyan-500 to-sky-400",
+        color: "from-cyan-500 to-cyan-400",
         delay: 0.6,
     },
     {
         id: "04",
         bold: "Simple & fast decision making",
         rest: "",
-        color: "from-cyan-400 to-teal-300",
+        color: "from-cyan-400 to-cyan-300",
         delay: 0.8,
     },
 ];
@@ -42,13 +42,6 @@ const FeatureRow = ({ feature, }: { feature: typeof features[0]; index: number }
             transition={{ duration: 0.7, delay: feature.delay, ease: [0.22, 1, 0.36, 1] }}
             className="group relative flex items-baseline gap-5 py-5 cursor-default"
         >
-            {/* Divider line that grows on view */}
-            <motion.div
-                initial={{ scaleX: 0 }}
-                animate={inView ? { scaleX: 1 } : {}}
-                transition={{ duration: 0.6, delay: feature.delay, ease: [0.22, 1, 0.36, 1] }}
-                className={`absolute top-0 left-0 h-px w-full bg-linear-to-r ${feature.color} opacity-20 origin-left`}
-            />
 
             {/* Bold keyword — slides up, gradient */}
             <div className="overflow-hidden">
@@ -57,7 +50,7 @@ const FeatureRow = ({ feature, }: { feature: typeof features[0]; index: number }
                     animate={inView ? { y: "0%" } : {}}
                     transition={{ duration: 0.6, delay: feature.delay + 0.1, ease: [0.22, 1, 0.36, 1] }}
                     className={`inline-block font-black text-3xl md:text-4xl lg:text-5xl bg-linear-to-r ${feature.color} bg-clip-text text-transparent leading-tight tracking-tight`}
-                    style={{ fontFamily: "'Syne', sans-serif" }}
+                    style={{ fontFamily: "'Gawthami', sans-serif" }}
                 >
                     {feature.bold}
                 </motion.span>
@@ -108,7 +101,7 @@ const WhyThis = () => {
             <motion.div
                 animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
                 transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-20 left-1/3 w-125 h-125 rounded-full bg-cyan-500/15 blur-[80px] pointer-events-none"
+                className="absolute top-10 left-1/3 w-125 h-125 rounded-full bg-cyan-500/15 blur-[80px] pointer-events-none"
             />
             <motion.div
                 animate={{ scale: [1, 1.15, 1], opacity: [0.07, 0.15, 0.07] }}
@@ -138,7 +131,7 @@ const WhyThis = () => {
                         style={{ fontFamily: "'Syne', sans-serif" }}
                     >
                         Why{" "}
-                        <span className="bg-linear-to-r from-cyan-400 via-teal-300 to-cyan-500 bg-clip-text text-transparent">
+                        <span className="bg-linear-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent">
                             This App?
                         </span>
                     </motion.h1>
@@ -149,7 +142,7 @@ const WhyThis = () => {
                     initial={{ opacity: 0, y: 15 }}
                     animate={titleInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.5, duration: 0.6 }}
-                    className="text-white/35 text-base md:text-lg font-light mt-4 max-w-sm"
+                    className="text-white/35 text-base md:text-lg font-light mt-1 max-w-sm"
                 >
                     Pick the perfect phone — without the noise.
                 </motion.p>
