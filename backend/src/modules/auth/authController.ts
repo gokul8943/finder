@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import userModel from "../models/userModels";
+import userModel from "../../models/userModels";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { generateOtp } from "../helper/authHelper";
+import { generateOtp } from "../../helper/authHelper";
 
 
 export const signup = async (req: Request, res: Response) => {
