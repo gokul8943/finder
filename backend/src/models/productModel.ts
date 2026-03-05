@@ -4,7 +4,7 @@ import mongoose, { Schema } from "mongoose";
 interface IProduct extends Document {
     name: string;
     description: string;
-    price: number;
+    price: string;
     frontCamera: string;
     rearCamera: Array<string>;
     ram: string;
@@ -17,16 +17,17 @@ interface IProduct extends Document {
     os: string;
     category: string;
     stock: number;
+    status?: string;
+    updateBy: mongoose.Types.ObjectId;
     createdAt: Date;
     updatedAt: Date;
 }
-
 
 const productSchema = new Schema<IProduct>(
     {
         name: { type: String, required: true, trim: true },
         description: { type: String, required: true },
-        price: { type: Number, required: true },
+        price: { type: String, required: true },
         frontCamera: { type: String, required: true },
         rearCamera: { type: [String], required: true },
         ram: { type: String, required: true },
@@ -39,6 +40,8 @@ const productSchema = new Schema<IProduct>(
         os: { type: String, required: true },
         category: { type: String, required: true },
         stock: { type: Number, required: true },
+        updateBy: { type: Schema.Types.ObjectId, ref: 'User' },
+        status: { type: String, enum: ['active', 'inactive'], default: 'active' },
         createdAt: { type: Date, default: Date.now },
         updatedAt: { type: Date, default: Date.now },
     },
