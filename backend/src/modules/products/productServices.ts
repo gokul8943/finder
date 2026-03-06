@@ -12,3 +12,19 @@ export const getProducts = async (
 
     return products;
 };
+
+export const getProductById = async (id: any) => {
+    const product = await productRepository.getProductById(id);
+    return product;
+}   
+
+
+export const deleteProduct = async (id: any,status: string) => {
+    const product = await productRepository.deleteProduct(id,status);
+    return product;
+}
+
+export const updateProduct = async (id: any, data: any) => {
+    const product = await productRepository.updateProduct(id, data);
+    return product;
+}

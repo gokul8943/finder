@@ -27,7 +27,8 @@ export const getProducts = async (req: Request, res: Response) => {
 export const getProductById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        res.status(200).json({ message: `Product with ID ${id} retrieved successfully` });
+        const product = await productService.getProductById(id);
+        res.status(200).json({ message: `Product with ID ${id} retrieved successfully`, data: product });
     } catch (error) {
         res.status(500).json({ message: "Failed to retrieve product", error });
     }
@@ -36,6 +37,8 @@ export const getProductById = async (req: Request, res: Response) => {
 export const deleteProduct = async (req: AuthRequest, res: Response) => {
     try {
         const { id } = req.params;
+        const { status } = req.body;
+        const product = await productService.deleteProduct(id, status);
         res.status(200).json({ message: `Product with ID ${id} deleted successfully` });
     } catch (error) {
         res.status(500).json({ message: "Failed to delete product", error });
@@ -46,6 +49,8 @@ export const deleteProduct = async (req: AuthRequest, res: Response) => {
 export const updateProduct = async (req: AuthRequest, res: Response) => {
     try {
         const { id } = req.params;
+        const data = req.body;
+        const product = await productService.updateProduct(id, data);
         res.status(200).json({ message: `Product with ID ${id} updated successfully` });
     } catch (error) {
         res.status(500).json({ message: "Failed to update product", error });
