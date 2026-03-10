@@ -74,6 +74,42 @@ export const login = async (req: Request, res: Response) => {
     }
 };
 
+export const sendOtp = async (req: Request, res: Response) => {
+    try {
+        const { email } = req.body;
+        if (!email) {
+            return res.status(400).json({ message: "Email is required" });
+        }
+        const user = await AuthService.sendOtp(email);
+        if (!user) {
+            return res.status(400).json({ message: "User with this email number does not exist" });
+        }
+    } catch (error) {
+        console.log('Error sending otp', error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+
+export const verifyOtp = async (req: Request, res: Response) => {
+    try {
+        const { email, otp } = req.body;
+        if (!email || !otp) {
+            return res.status(400).json({ message: "Email and OTP are required" });
+        }
+        const user = await AuthService.verifyOtp(email, otp);
+        if (!user) {
+            return res.status(400).json({ message: "User with this email does not exist" });
+        }
+        res.status(200).json({
+            message: "OTP verified successfully",
+        });
+    } catch (error) {
+        console.log('Error verifying OTP', error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
 // export const sendOtp = async (req: Request, res: Response) => {
 //     try {
 //         const { mobile } = req.body;

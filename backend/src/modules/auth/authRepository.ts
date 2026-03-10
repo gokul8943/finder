@@ -1,4 +1,5 @@
 import userModel from "../../models/userModels";
+import otpModel from "../../models/otpModel";
 
 export const findUserByEmailOrMobile = async (email: string, mobile: string) => {
     return await userModel.findOne({
@@ -33,4 +34,17 @@ export const findUserByIdentifier = async (identifier: string) => {
     });
 
     return user;
+};
+
+
+export const verifyOtp = async (email: string, otp: string) => {
+    const otpRecord = await otpModel.findOne({ email, otp });
+    if (!otpRecord) {
+        throw new Error("Invalid OTP");
+    }
+
+    if (otpRecord.expiresAt < new Date()) {
+        throw new Error("OTP has expired");
+    }
+    return otpRecord;
 };

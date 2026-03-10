@@ -1,6 +1,7 @@
 import * as AuthRepository from "./authRepository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { generateOtp } from "../../helper/authHelper";
 
 export const signUp = async (
     username: string,
@@ -61,3 +62,25 @@ export const loginUser = async (identifier: string, password: string) => {
         token
     };
 };
+
+
+export const sendOtp = async (email: string) => {
+    const user = await AuthRepository.findUserByEmailOrMobile(email, "");
+
+    if (!user) {
+        throw new Error("User not found");
+    }
+    const otp = generateOtp();
+    return otp;
+}
+
+
+export const verifyOtp = async (email: string, otp: string) => {
+    const user = await AuthRepository.verifyOtp(email, otp);
+
+    if (!user) {
+        throw new Error("Invalid OTP");
+    }
+    return user;
+}
+
