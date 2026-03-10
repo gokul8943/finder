@@ -1,4 +1,3 @@
-import { Request } from "express";
 import * as  productRepository from "./productRepository";
 
 
