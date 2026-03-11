@@ -1,0 +1,20 @@
+import swaggerJsDoc from "swagger-jsdoc";
+
+const options: swaggerJsDoc.Options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "My Node API",
+      version: "1.0.0",
+      description: "API documentation for the project",
+    },
+    servers: [
+      {
+        url: "http://localhost:5000",
+      },
+    ],
+  },
+  apis: ["./src/routes/*.ts"], // path to route files
+};
+
+export const swaggerSpec = swaggerJsDoc(options);
