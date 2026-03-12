@@ -3,7 +3,6 @@ import Navbar from "./components/Navbar"
 import Home from './pages/Home'
 import ProductView from "./pages/ProductView"
 import '@/styles/animation.css';
-import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -19,7 +18,6 @@ const App = () => {
 
 
       </div>
-      <Footer />
     </>
   )
 }
