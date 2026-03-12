@@ -138,7 +138,7 @@ const WhyThis = () => {
             />
 
             {/* Content */}
-            <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 lg:px-16 py-24 sm:py-32">
+            <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-10 lg:px-16 py-15 sm:py-18">
 
                 {/* Header glass card */}
                 <motion.div
@@ -226,13 +226,6 @@ const WhyThis = () => {
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
                     className="mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 rounded-2xl px-6 py-5"
-                    style={{
-                        background: "rgba(255,255,255,0.52)",
-                        backdropFilter: "blur(20px)",
-                        WebkitBackdropFilter: "blur(20px)",
-                        border: "1px solid rgba(255,255,255,0.78)",
-                        boxShadow: "0 4px 20px rgba(6,182,212,0.08)",
-                    }}
                 >
                     <button
                         className="relative group px-7 py-3.5 rounded-xl font-semibold text-sm tracking-wide text-white overflow-hidden transition-transform duration-200 active:scale-95"
@@ -251,25 +244,6 @@ const WhyThis = () => {
                             style={{ background: "linear-gradient(135deg, #22d3ee, #06b6d4)" }}
                         />
                     </button>
-
-                    <div className="flex items-center gap-3">
-                        {/* Avatar stack */}
-                        <div className="flex -space-x-2">
-                            {["#06b6d4", "#0ea5e9", "#67e8f9"].map((c, i) => (
-                                <div
-                                    key={i}
-                                    className="w-7 h-7 rounded-full border-2 border-white"
-                                    style={{ background: `radial-gradient(circle at 35% 35%, white, ${c})` }}
-                                />
-                            ))}
-                        </div>
-                        <span
-                            className="text-sm text-slate-500"
-                            style={{ fontFamily: "'DM Sans', sans-serif" }}
-                        >
-                            No credit card · Results in seconds
-                        </span>
-                    </div>
                 </motion.div>
             </div>
         </section>
