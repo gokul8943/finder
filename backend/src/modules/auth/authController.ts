@@ -6,16 +6,18 @@ import * as AuthService from "./authServices";
 
 export const signup = async (req: Request, res: Response) => {
     try {
-        const { username, email, mobile, password } = req.body;
+        const { firstName, lastName, userName, email, mobile, password } = req.body;
 
-        if (!username || !email || !mobile || !password) {
+        if (!userName || !email || !mobile || !password) {
             return res.status(400).json({
                 message: "Missing required fields"
             });
         }
 
         const newUser = await AuthService.signUp(
-            username,
+            firstName,
+            lastName,
+            userName,
             email,
             mobile,
             password

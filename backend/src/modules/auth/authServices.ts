@@ -4,7 +4,9 @@ import jwt from "jsonwebtoken";
 import { generateOtp } from "../../helper/authHelper";
 
 export const signUp = async (
-    username: string,
+    firstName: string,
+    lastName:string,
+    userName: string,
     email: string,
     mobile: string,
     password: string
@@ -19,7 +21,9 @@ export const signUp = async (
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await AuthRepository.createUser(
-        username,
+        firstName,
+        lastName,
+        userName,
         email,
         mobile,
         hashedPassword

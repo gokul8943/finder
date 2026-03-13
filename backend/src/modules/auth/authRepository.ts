@@ -8,13 +8,17 @@ export const findUserByEmailOrMobile = async (email: string, mobile: string) => 
 };
 
 export const createUser = async (
-    username: string,
+    firstName: string,
+    lastName: string,
+    userName: string,
     email: string,
     mobile: string,
     password: string
 ) => {
     const newUser = await userModel.create({
-        username,
+        firstName,
+        lastName,
+        userName,
         email,
         mobile,
         password
