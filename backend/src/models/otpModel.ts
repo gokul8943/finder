@@ -16,7 +16,7 @@ const otpSchema = new mongoose.Schema<IOTP>(
         expiresAt: { type: Date, required: true },
     },
     { timestamps: true }
-);  
+);
 
 const otpModel = mongoose.model<IOTP>("OTP", otpSchema);
 

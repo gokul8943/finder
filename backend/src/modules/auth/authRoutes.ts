@@ -136,7 +136,7 @@ router.post("/login", login);
  *             example:
  *               message: Internal server error
  */
-router.post("/send-otp",sendOtp)
+router.post("/send-otp", sendOtp)
 
 /**
  * @swagger

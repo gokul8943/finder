@@ -5,7 +5,7 @@ import { generateOtp } from "../../helper/authHelper";
 
 export const signUp = async (
     firstName: string,
-    lastName:string,
+    lastName: string,
     userName: string,
     email: string,
     mobile: string,

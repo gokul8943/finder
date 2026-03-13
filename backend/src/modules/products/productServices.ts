@@ -15,11 +15,11 @@ export const getProducts = async (
 export const getProductById = async (id: any) => {
     const product = await productRepository.getProductById(id);
     return product;
-}   
+}
 
 
-export const deleteProduct = async (id: any,status: string) => {
-    const product = await productRepository.deleteProduct(id,status);
+export const deleteProduct = async (id: any, status: string) => {
+    const product = await productRepository.deleteProduct(id, status);
     return product;
 }
 
