@@ -3,10 +3,14 @@ import mongoose, { Schema } from "mongoose";
 
 interface IProduct extends Document {
     name: string;
+    brand: string;
     description: string;
     price: string;
+    rating:string;
+    review:string;
     frontCamera: string;
     rearCamera: Array<string>;
+    image: string;
     ram: string;
     storage: string;
     storageType: string;
@@ -17,6 +21,7 @@ interface IProduct extends Document {
     os: string;
     category: string;
     stock: number;
+    source: string;
     status?: string;
     updateBy: mongoose.Types.ObjectId;
     createdAt: Date;
@@ -26,8 +31,12 @@ interface IProduct extends Document {
 const productSchema = new Schema<IProduct>(
     {
         name: { type: String, required: true, trim: true },
+        brand: { type: String, required: true },
         description: { type: String, required: true },
         price: { type: String, required: true },
+        rating: { type: String, required: true },
+        review: { type: String, required: true },
+        image: { type: String, required: true },
         frontCamera: { type: String, required: true },
         rearCamera: { type: [String], required: true },
         ram: { type: String, required: true },
@@ -39,6 +48,7 @@ const productSchema = new Schema<IProduct>(
         battery: { type: String, required: true },
         os: { type: String, required: true },
         category: { type: String, required: true },
+        source: { type: String, required: true },
         stock: { type: Number, required: true },
         updateBy: { type: Schema.Types.ObjectId, ref: 'User' },
         status: { type: String, enum: ['active', 'inactive'], default: 'active' },
