@@ -27,3 +27,23 @@ export const updateProduct = async (id: any, data: any) => {
     const product = await productRepository.updateProduct(id, data);
     return product;
 }
+
+export const getProductsByPreference = async (
+    price?: string,
+    camera?: string,
+    storage?: string,
+    frontCamera?: string,
+    rearCamera?: string,
+    brand?: string,
+    display?: string
+) => {
+    return await productRepository.getProductsByPreference(
+        price,
+        camera,
+        storage,
+        frontCamera,
+        rearCamera,
+        brand,
+        display
+    );
+};
