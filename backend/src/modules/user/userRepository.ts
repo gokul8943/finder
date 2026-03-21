@@ -12,3 +12,17 @@ export const getProfile = async (userId: string) => {
         throw new Error("Failed to retrieve user profile");
     }
 }
+
+
+export const updateProfile = async (userId: string, data: any) => {
+    try {
+        const updatedUser = await userModel.findByIdAndUpdate(userId, data, { new: true }).select("-password");
+        if (!updatedUser) {
+            throw new Error("User not found");
+        }
+        return updatedUser;
+    }
+    catch (error) {
+        throw new Error("Failed to update user profile");
+    }
+}

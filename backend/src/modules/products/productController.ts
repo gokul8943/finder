@@ -56,3 +56,23 @@ export const updateProduct = async (req: AuthRequest, res: Response) => {
         res.status(500).json({ message: "Failed to update product", error });
     }
 }
+
+export const getProductsByPreferences = async (req: AuthRequest, res: Response) => {
+    try {
+        const user = req.user; 
+        const userId = user?.id;
+        if (!userId) {
+            return res.status(404).json({ message: "User not authenticated" });
+        }
+        const products = await productService.getProductsByPreferences(userId);
+        res.status(200).json({
+            message: "Products retrieved successfully based on user preferences",
+            data: products
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Failed to retrieve products based on user preferences",
+            error
+        });
+    }
+}
