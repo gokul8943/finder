@@ -1,4 +1,5 @@
 import userModel from "../../models/userModels";
+import generationModel from "../../models/generationModel";
 
 export const getProfile = async (userId: string) => {
     try {
