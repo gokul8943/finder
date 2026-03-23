@@ -26,3 +26,13 @@ export const updateProfile = async (userId: string, data: any) => {
         throw new Error("Failed to update user profile");
     }
 }
+
+
+export const saveGeneration = async (data: any) => {
+    try {
+        const report = await generationModel.create(data)
+        return report
+    } catch (error) {
+
+    }
+}

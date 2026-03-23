@@ -69,7 +69,7 @@ export const getProductsByPreference = async (
         filter.display = { $gte: Number(display) };
     }
 
-    const products = await productModel.find(filter);
+    const products = await productModel.find(filter).limit(10);
 
     return products;
 };

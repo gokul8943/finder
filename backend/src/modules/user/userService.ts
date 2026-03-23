@@ -10,3 +10,9 @@ export const updateProfile = async (userId: string, data: any) => {
     const updatedProfile = await userRepository.updateProfile(userId, data);
     return updatedProfile;
 }
+
+
+export const saveGeneration = async (data: any) => {
+    const createReport = await userRepository.saveGeneration(data)
+    return createReport
+}

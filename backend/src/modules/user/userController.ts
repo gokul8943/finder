@@ -27,10 +27,10 @@ export const getUserProfile = async (req: AuthRequest, res: Response) => {
 }
 
 
-export const updateUserProfile = async(req:AuthRequest, res: Response) => {
+export const updateUserProfile = async (req: AuthRequest, res: Response) => {
     try {
         const user = req.user;
-        const userId = user?.id;    
+        const userId = user?.id;
         if (!userId) {
             return res.status(404).json({ message: "user not authenticated" });
         }
@@ -47,3 +47,16 @@ export const updateUserProfile = async(req:AuthRequest, res: Response) => {
         });
     }
 }
+
+export const saveGeneration = async (req: Request, res: Response) => {
+    try {
+        const { data } = req.body
+
+        const report = await userService.saveGeneration(data)
+        return res.status(201).json({ message: "generation saved successfully", data })
+    } catch (error) {
+        console.log('Error creating report', error);
+        res.status(500).json({ message: "Internal server error" })
+    }
+}
+
