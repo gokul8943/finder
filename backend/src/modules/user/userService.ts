@@ -16,3 +16,13 @@ export const saveGeneration = async (data: any) => {
     const createReport = await userRepository.saveGeneration(data)
     return createReport
 }
+
+export const getAllGeneration = async(userId: any) => {
+    const report = await userRepository.getAllGeneration(userId)
+    return report
+}
+
+export const getGenerationById = async(id: any) => {
+    const report = await userRepository.getGenerationById(id)
+    return report
+}

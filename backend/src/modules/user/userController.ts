@@ -60,3 +60,25 @@ export const saveGeneration = async (req: Request, res: Response) => {
     }
 }
 
+export const getAllGeneration = async(req:AuthRequest, res:Response) => {
+   try {
+    const userId = req.user?.id
+    const report = await userService.getAllGeneration(userId)
+    return res.status(201).json({ message: "generation fetched successfully", data: report })
+   } catch (error) {
+    console.log('error fetching generation',error)
+    res.status(500).json({ message: "Internal server error" })
+   }
+}
+
+export const getGenerationById = async(req:AuthRequest,res:Response) => {
+    try {
+        const { id } = req.params;
+        const report = await userService.getGenerationById(id)
+        return res.status(201).json({ message: "generation fetched successfully", data: report })
+    } catch (error) {
+        console.log('Error fetching generation',error);
+        res.status(500).json({ message: "Internal server error" })
+    }
+}
+
