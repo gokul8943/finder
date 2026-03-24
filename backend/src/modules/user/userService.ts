@@ -17,12 +17,12 @@ export const saveGeneration = async (data: any) => {
     return createReport
 }
 
-export const getAllGeneration = async(userId: any) => {
+export const getAllGeneration = async (userId: any) => {
     const report = await userRepository.getAllGeneration(userId)
     return report
 }
 
-export const getGenerationById = async(id: any) => {
+export const getGenerationById = async (id: any) => {
     const report = await userRepository.getGenerationById(id)
     return report
 }
