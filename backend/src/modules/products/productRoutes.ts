@@ -11,10 +11,10 @@ const router = express.Router();
 
 
 router.get("/", getProducts);
+router.get("/preference", getProductsByPreferences)
 router.get("/:id", getProductById);
 router.delete("/:id", deleteProduct);
 router.put("/:id", updateProduct);
-router.get('/preference', getProductsByPreferences)
 
 
 export default router;
