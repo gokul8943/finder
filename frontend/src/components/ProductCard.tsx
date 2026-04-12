@@ -156,14 +156,14 @@ const ProductCard = ({
         </div>
 
         {/* Name + description */}
-        <div>
+        <div className="cursor-pointer">
           <h3
-            className="text-base sm:text-lg font-bold tracking-tight text-slate-800 leading-tight"
+            className="text-lg sm:text-[22px] font-extrabold tracking-tight text-slate-800 leading-tight transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-cyan-600 group-hover:to-sky-500 group-hover:bg-clip-text group-hover:text-transparent"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             {title}
           </h3>
-          <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-slate-500 font-light leading-relaxed line-clamp-2">
+          <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-500 font-medium leading-relaxed line-clamp-2 transition-colors duration-300 group-hover:text-slate-600">
             {description}
           </p>
         </div>

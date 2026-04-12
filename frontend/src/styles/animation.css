@@ -69,12 +69,12 @@
   font-weight: 800;
   background: linear-gradient(
     120deg,
-    #ffffff 0%,
-    #a8f0f0 20%,
-    #ffffff 40%,
-    #00d4d4 60%,
-    #ffffff 80%,
-    #7eeaea 100%
+    #083344 0%,
+    #06b6d4 20%,
+    #0e4a5e 40%,
+    #0ea5e9 60%,
+    #083344 80%,
+    #22d3ee 100%
   );
   background-size: 250% auto;
   -webkit-background-clip: text;
