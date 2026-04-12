@@ -114,11 +114,21 @@
     --sidebar-ring: oklch(0.556 0 0);
 }
 
+@theme inline {
+    --breakpoint-xs: 480px;
+}
+
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border outline-ring/50;
-    }
+  }
   body {
     @apply bg-background text-foreground;
-    }
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }

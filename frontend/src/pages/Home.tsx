@@ -1,16 +1,17 @@
-import HeroSection from "@/sections/HeroSection"
-import HowItsWorks from "@/sections/HowItsWorks"
-import WhyThis from "@/sections/WhyThis"
-
+import HeroSection from "@/sections/HeroSection";
+import HowItWorks from "@/sections/HowItsWorks";
+import WhyThis from "@/sections/WhyThis";
+import Footer from "@/components/Footer";
 
 const Home = () => {
   return (
-    <div className="min-h-screen w-full">
-       <HeroSection />
-       <HowItsWorks />
-       <WhyThis />
-    </div>
-  )
-}
+    <main className="w-full">
+      <HeroSection />
+      <HowItWorks />
+      <WhyThis />
+      <Footer />
+    </main>
+  );
+};
 
-export default Home
+export default Home;
