@@ -57,7 +57,7 @@ const HeroSection = () => {
         {/* CTA Buttons */}
         <div className="hero-cta flex flex-col xs:flex-row items-center gap-3 sm:gap-4 mt-2">
           <Link
-            to="/products"
+            to="/generate"
             className="group relative px-7 py-3.5 sm:px-8 sm:py-4 rounded-2xl text-sm sm:text-base font-semibold text-white overflow-hidden transition-transform duration-200 active:scale-95"
             style={{
               background: "linear-gradient(135deg, #06b6d4, #0ea5e9)",
@@ -65,7 +65,7 @@ const HeroSection = () => {
             }}
           >
             <span className="relative z-10 flex items-center gap-2">
-              Explore Now
+              Get Started
               <span className="group-hover:translate-x-1 transition-transform duration-300 inline-block">
                 →
               </span>
@@ -86,7 +86,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="scroll-indicator absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      {/* <div className="scroll-indicator absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <span className="text-[10px] text-cyan-600/40 tracking-widest uppercase font-light">
           Scroll
         </span>
@@ -121,7 +121,7 @@ const HeroSection = () => {
             />
           </circle>
         </svg>
-      </div>
+      </div> */}
     </section>
   );
 };

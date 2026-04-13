@@ -3,14 +3,14 @@ import { Wallet, Target, Sparkles } from "lucide-react";
 
 const steps = [
   {
-    title: "Select your budget",
-    desc: "Tailor the search to your financial comfort zone.",
-    icon: Wallet,
-  },
-  {
     title: "Choose your priority",
     desc: "Performance, design, or battery life? You decide.",
     icon: Target,
+  },
+  {
+    title: "Select your budget",
+    desc: "Tailor the search to your financial comfort zone.",
+    icon: Wallet,
   },
   {
     title: "Get AI recommendations",
