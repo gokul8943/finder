@@ -40,19 +40,19 @@ export default function Generate() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   
-  const [selectedUseCase, setSelectedUseCase] = useState(null);
-  const [selectedBudget, setSelectedBudget] = useState(null);
-  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedUseCase, setSelectedUseCase] = useState<string | null>(null);
+  const [selectedBudget, setSelectedBudget] = useState<string | null>(null);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   
   const [loadingText, setLoadingText] = useState("Analyzing your preferences...");
 
   // Handle Brand Toggle
-  const toggleBrand = (id:any) => {
+  const toggleBrand = (id: string) => {
     if (id === "any") {
       setSelectedBrands(["any"]);
       return;
     }
-    const newSelection = selectedBrands.includes(id as any)
+    const newSelection = selectedBrands.includes(id)
       ? selectedBrands.filter((b) => b !== id)
       : [...selectedBrands.filter((b) => b !== "any"), id];
     setSelectedBrands(newSelection);
@@ -137,7 +137,7 @@ export default function Generate() {
                   exit={{ opacity: 0, x: -20 }}
                   className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                 >
-                  {useCases.map((uc:any) => (
+                  {useCases.map((uc) => (
                     <button
                       key={uc.id}
                       onClick={() => setSelectedUseCase(uc.id)}
@@ -172,7 +172,7 @@ export default function Generate() {
                   exit={{ opacity: 0, x: -20 }}
                   className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                 >
-                  {budgets.map((b:any) => (
+                  {budgets.map((b) => (
                     <button
                       key={b.id}
                       onClick={() => setSelectedBudget(b.id)}
@@ -209,7 +209,7 @@ export default function Generate() {
                   exit={{ opacity: 0, x: -20 }}
                   className="flex flex-wrap gap-3 sm:gap-4 justify-center"
                 >
-                  {brands.map((b:any) => {
+                  {brands.map((b) => {
                     const isSelected = selectedBrands.includes(b.id);
                     return (
                       <button
