@@ -41,7 +41,7 @@ const HeroSection = () => {
           Smarter Decisions
         </h1>
 
-        <div className="hero-line h-px w-20 sm:w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+        <div className="hero-line h-px w-20 sm:w-24 bg-linear-to-r from-transparent via-cyan-400 to-transparent" />
 
         <p className="hero-subtitle text-xs xs:text-sm sm:text-base md:text-lg text-cyan-700/80">
           Smart Picks

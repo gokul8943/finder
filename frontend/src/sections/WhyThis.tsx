@@ -92,7 +92,7 @@ const FeatureRow = ({ feature }: { feature: (typeof features)[0] }) => {
                 delay: feature.delay + 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className={`inline-block font-black text-lg sm:text-xl md:text-2xl lg:text-[2rem] bg-gradient-to-r ${feature.color} bg-clip-text text-transparent leading-tight tracking-tight`}
+              className={`inline-block font-black text-lg sm:text-xl md:text-2xl lg:text-[2rem] bg-linear-to-r ${feature.color} bg-clip-text text-transparent leading-tight tracking-tight`}
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               {feature.bold}
@@ -239,7 +239,7 @@ const WhyThis = () => {
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               Stop drowning in{" "}
-              <span className="bg-gradient-to-r from-cyan-500 to-sky-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-cyan-500 to-sky-500 bg-clip-text text-transparent">
                 research.
               </span>
             </motion.h2>

@@ -39,7 +39,7 @@ const Navbar = () => {
               <span className="text-slate-800 transition-colors duration-300 group-hover:text-slate-900 drop-shadow-sm">
                 sMart
               </span>
-              <span className="bg-gradient-to-r from-cyan-900 to-sky-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-cyan-400 group-hover:to-sky-400 drop-shadow-sm">
+              <span className="bg-linear-to-r from-cyan-900 to-sky-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-cyan-400 group-hover:to-sky-400 drop-shadow-sm">
                 Pick
               </span>
               <span className="inline-block w-2 h-2 rounded-full bg-cyan-500 ml-1 shadow-[0_0_8px_rgba(6,182,212,0.8)] animate-pulse" />

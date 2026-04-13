@@ -16,7 +16,7 @@ const Footer = () => {
       }}
     >
       {/* Decorative top border */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+      <div className="w-full h-px bg-linear-to-r from-transparent via-cyan-400/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-8 lg:gap-12">
@@ -26,7 +26,7 @@ const Footer = () => {
               <span className="text-slate-300 transition-colors duration-300 group-hover:text-slate-900 drop-shadow-sm">
                 sMart
               </span>
-              <span className="bg-gradient-to-r from-cyan-300 to-sky-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-cyan-400 group-hover:to-sky-400 drop-shadow-sm">
+              <span className="bg-linear-to-r from-cyan-300 to-sky-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-cyan-400 group-hover:to-sky-400 drop-shadow-sm">
                 Pick
               </span>
               <span className="inline-block w-2 h-2 rounded-full bg-cyan-500 ml-1 shadow-[0_0_8px_rgba(6,182,212,0.8)] animate-pulse" />

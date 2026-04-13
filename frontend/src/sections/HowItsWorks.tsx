@@ -75,7 +75,7 @@ const HowItWorks = () => {
         {/* Steps grid */}
         <div className="grid gap-5 sm:gap-6 md:grid-cols-3 relative">
           {/* Connecting line — visible on md+ */}
-          <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-px bg-gradient-to-r from-cyan-200 via-cyan-300 to-cyan-200 z-0" />
+          <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-px bg-linear-to-r from-cyan-200 via-cyan-300 to-cyan-200 z-0" />
 
           {steps.map((step, index) => {
             const Icon = step.icon;

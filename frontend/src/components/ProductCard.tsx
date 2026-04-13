@@ -158,7 +158,7 @@ const ProductCard = ({
         {/* Name + description */}
         <div className="cursor-pointer">
           <h3
-            className="text-lg sm:text-[22px] font-extrabold tracking-tight text-slate-800 leading-tight transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-cyan-600 group-hover:to-sky-500 group-hover:bg-clip-text group-hover:text-transparent"
+            className="text-lg sm:text-[22px] font-extrabold tracking-tight text-slate-800 leading-tight transition-all duration-300 group-hover:bg-linear-to-br group-hover:from-cyan-600 group-hover:to-sky-500 group-hover:bg-clip-text group-hover:text-transparent"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             {title}
@@ -183,7 +183,7 @@ const ProductCard = ({
             <span className="text-[10px] sm:text-xs text-slate-400 font-light line-through">
               {originalPrice}
             </span>
-            <span className="text-xl sm:text-2xl font-black bg-gradient-to-r from-cyan-600 to-sky-500 bg-clip-text text-transparent leading-tight">
+            <span className="text-xl sm:text-2xl font-black bg-linear-to-r from-cyan-600 to-sky-500 bg-clip-text text-transparent leading-tight">
               {price}
             </span>
           </div>
