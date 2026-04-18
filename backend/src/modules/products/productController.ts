@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { AuthRequest } from '../../middleware/Auth';
 import * as productService from '../products/productServices';
+import { pickBestSmartPhoneService } from '../../services/geminiServices';
 
 export const getProducts = async (req: Request, res: Response) => {
     try {
@@ -86,10 +87,11 @@ export const getProductsByPreferences = async (req: Request, res: Response) => {
             brand,
             display
         );
+        const aiResponse = await pickBestSmartPhoneService(req.query, products);
 
         res.status(200).json({
             message: "Products retrieved successfully based on user preferences",
-            data: products
+            data: aiResponse
         });
     } catch (error) {
         res.status(500).json({
