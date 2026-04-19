@@ -30,46 +30,71 @@ export const updateProduct = async (id: string, data: any) => {
 }
 
 export const getProductsByPreference = async (
-    price?: string,
-    camera?: string,
-    storage?: string,
-    frontCamera?: string,
-    rearCamera?: string,
-    brand?: string,
-    display?: string
+    useCase?: string,
+    budget?: string,
+    brand?: string
 ) => {
-    const filter: any = {};
+    const filter: any = { status: "active" };
 
-    if (price) {
-        const [min, max] = price.split("-").map(Number);
-        filter.price = { $gte: min, $lte: max };
+    // ── Budget filter ─────────────────────────────────────────────
+    if (budget) {
+        const [min, max] = budget.split("-").map(Number);
+        filter.$expr = {
+            $and: [
+                { $gte: [{ $toDouble: "$price" }, min] },
+                { $lte: [{ $toDouble: "$price" }, max] },
+            ],
+        };
     }
 
-    if (camera === "high") {
-        filter.rearCamera = { $gte: 50 };
-    }
-
-    if (frontCamera) {
-        filter.frontCamera = { $gte: Number(frontCamera) };
-    }
-
-    if (rearCamera) {
-        filter.rearCamera = { $gte: Number(rearCamera) };
-    }
-
-    if (storage) {
-        filter.storage = { $gte: Number(storage) };
-    }
-
+    // ── Brand filter ──────────────────────────────────────────────
     if (brand) {
-        filter.brand = brand;
+        // ✅ String pattern + $options instead of /regex/i literal
+        filter.brand = { $regex: brand, $options: "i" };
     }
 
-    if (display) {
-        filter.display = { $gte: Number(display) };
+    // ── Use-case filter ───────────────────────────────────────────
+    if (useCase) {
+        switch (useCase.toLowerCase()) {
+
+            case "gaming":
+                filter.ram = { $regex: "\\b([89]|1[0-9]|[2-9][0-9])\\s*GB", $options: "i" };
+                filter.refreshRate = { $regex: "\\b(90|120|144|165|240)\\s*Hz", $options: "i" };
+                break;
+
+            case "photography":
+                filter.rearCamera = {
+                    $elemMatch: { $regex: "\\b([5-9][0-9]|[1-9][0-9]{2,})\\s*MP", $options: "i" },
+                };
+                break;
+
+            case "battery":
+                filter.battery = { $regex: "\\b([5-9][0-9]{3}|[1-9][0-9]{4,})\\s*mAh", $options: "i" };
+                break;
+
+            case "balance":
+                filter.ram = { $regex: "\\b([6-9]|1[0-9]|[2-9][0-9])\\s*GB", $options: "i" };
+                filter.battery = { $regex: "\\b(4[5-9][0-9]{2}|[5-9][0-9]{3}|[1-9][0-9]{4,})\\s*mAh", $options: "i" };
+                filter.refreshRate = { $regex: "\\b(60|90|120|144|165|240)\\s*Hz", $options: "i" };
+                break;
+
+            default:
+                break;
+        }
     }
+
+    console.log("MongoDB filter:", JSON.stringify(filter, null, 2));
 
     const products = await productModel.find(filter).limit(10);
 
+    if (products.length === 0 && useCase) {
+        console.warn(`No products for useCase="${useCase}", falling back to brand/budget only`);
+        const fallbackFilter: any = { status: "active" };
+        if (filter.$expr) fallbackFilter.$expr = filter.$expr;
+        if (filter.brand) fallbackFilter.brand = filter.brand;
+        return await productModel.find(fallbackFilter).limit(10);
+    }
+
     return products;
 };
+

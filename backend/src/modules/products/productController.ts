@@ -60,43 +60,25 @@ export const updateProduct = async (req: AuthRequest, res: Response) => {
 
 export const getProductsByPreferences = async (req: Request, res: Response) => {
     try {
-        const {
-            price,
-            camera,
-            storage,
-            frontCamera,
-            rearCamera,
-            brand,
-            display
-        } = req.query as {
-            price?: string;
-            camera?: string;
-            storage?: string;
-            frontCamera?: string;
-            rearCamera?: string;
-            brand?: string;
-            display?: string;
+        const { useCase, budget, brand } = req.query as {
+            useCase?: string;   // gaming | photography | battery| balance
+            budget?: string;    // e.g. "10000-30000"
+            brand?: string;     // e.g. "Samsung"
         };
 
-        const products = await productService.getProductsByPreference(
-            price,
-            camera,
-            storage,
-            frontCamera,
-            rearCamera,
-            brand,
-            display
-        );
+        const products = await productService.getProductsByPreference(useCase, budget, brand);
+        console.log('products',products);
+        
         const aiResponse = await pickBestSmartPhoneService(req.query, products);
 
         res.status(200).json({
             message: "Products retrieved successfully based on user preferences",
-            data: aiResponse
+            data: aiResponse,
         });
     } catch (error) {
         res.status(500).json({
             message: "Failed to retrieve products based on user preferences",
-            error
+            error,
         });
     }
 };

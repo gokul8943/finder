@@ -29,21 +29,9 @@ export const updateProduct = async (id: any, data: any) => {
 }
 
 export const getProductsByPreference = async (
-    price?: string,
-    camera?: string,
-    storage?: string,
-    frontCamera?: string,
-    rearCamera?: string,
-    brand?: string,
-    display?: string
+    useCase?: string,
+    budget?: string,
+    brand?: string
 ) => {
-    return await productRepository.getProductsByPreference(
-        price,
-        camera,
-        storage,
-        frontCamera,
-        rearCamera,
-        brand,
-        display
-    );
+    return await productRepository.getProductsByPreference(useCase, budget, brand);
 };
