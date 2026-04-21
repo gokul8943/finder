@@ -22,10 +22,10 @@ const useCases = [
 ];
 
 const budgets = [
-  { id: "budget", label: "Budget", range: "Under $400", color: "from-emerald-400 to-emerald-500" },
-  { id: "mid", label: "Mid-Range", range: "$400 - $800", color: "from-blue-400 to-blue-500" },
-  { id: "premium", label: "Premium", range: "$800 - $1200", color: "from-indigo-400 to-indigo-500" },
-  { id: "ultra", label: "Ultra", range: "Over $1200", color: "from-purple-400 to-purple-500" },
+  { id: "budget", label: "Budget", range: "Under 15000", color: "from-emerald-400 to-emerald-500" },
+  { id: "mid", label: "Mid-Range", range: "15000 - 30000", color: "from-blue-400 to-blue-500" },
+  { id: "premium", label: "Premium", range: "30000 - 45000", color: "from-indigo-400 to-indigo-500" },
+  { id: "ultra", label: "Ultra", range: "Over 45000", color: "from-purple-400 to-purple-500" },
 ];
 
 const brands = [
@@ -64,17 +64,72 @@ export default function Generate() {
   // Loading Sequence
   useEffect(() => {
     if (step === 4) {
+      let isCancelled = false;
       const timers = [
-        setTimeout(() => setLoadingText("Scanning market database..."), 1200),
-        setTimeout(() => setLoadingText("Matching specs & reviews..."), 2400),
-        setTimeout(() => setLoadingText("Curating top choices..."), 3600),
-        setTimeout(() => {
-          navigate("/products");
-        }, 5000),
+        setTimeout(() => { if (!isCancelled) setLoadingText("Scanning market database...")}, 1200),
+        setTimeout(() => { if (!isCancelled) setLoadingText("Matching specs & reviews...")}, 2400),
+        setTimeout(() => { if (!isCancelled) setLoadingText("Curating top choices...")}, 3600),
       ];
-      return () => timers.forEach(clearTimeout);
+
+      const fetchPreferences = async () => {
+        try {
+          const params = new URLSearchParams();
+          if (selectedUseCase) {
+            let uc = selectedUseCase;
+            if (uc === "camera") uc = "photography";
+            if (uc === "balanced") uc = "balance";
+            params.append("useCase", uc);
+          }
+          
+          if (selectedBudget) {
+            let budgetRange = "0-999999";
+            if (selectedBudget === "budget") budgetRange = "0-15000";
+            if (selectedBudget === "mid") budgetRange = "15000-30000";
+            if (selectedBudget === "premium") budgetRange = "30000-45000";
+            if (selectedBudget === "ultra") budgetRange = "45000-500000";
+            params.append("budget", budgetRange);
+          }
+
+          if (selectedBrands.length > 0 && !selectedBrands.includes("any")) {
+            params.append("brand", selectedBrands.join(","));
+          }
+
+          const response = await fetch(`/api/v1/products/preference?${params.toString()}`);
+          if (!response.ok) {
+             throw new Error("HTTP error " + response.status);
+          }
+          const result = await response.json();
+          
+          let phonesArray = [];
+          if (Array.isArray(result.data)) {
+            phonesArray = result.data;
+          } else if (result.data?.recommendedPhones) {
+            phonesArray = result.data.recommendedPhones;
+          }
+
+          if (!isCancelled) {
+            if (phonesArray.length > 0) {
+              navigate("/products", { state: { data: phonesArray } });
+            } else {
+              navigate("/products"); // fallback
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching preferences:", error);
+          if (!isCancelled) {
+            navigate("/products"); // fallback
+          }
+        }
+      };
+
+      fetchPreferences();
+
+      return () => {
+        isCancelled = true;
+        timers.forEach(clearTimeout);
+      };
     }
-  }, [step, navigate]);
+  }, [step, navigate, selectedUseCase, selectedBudget, selectedBrands]);
 
   const canProceed = () => {
     if (step === 1) return !!selectedUseCase;
@@ -182,7 +237,7 @@ export default function Generate() {
                           : "scale-95 opacity-80 hover:scale-100 hover:opacity-100 shadow-md"
                       }`}
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${b.color} opacity-10`} />
+                      <div className={`absolute inset-0 bg-linear-to-br ${b.color} opacity-10`} />
                       {selectedBudget === b.id && (
                         <motion.div 
                           layoutId="budget-outline"
@@ -282,7 +337,7 @@ export default function Generate() {
                 disabled={!canProceed()}
                 className={`relative group px-8 py-4 rounded-2xl text-white font-bold inline-flex items-center gap-3 transition-all duration-300 ${
                   canProceed() 
-                    ? "bg-gradient-to-r from-cyan-500 to-blue-500 hover:shadow-xl hover:shadow-cyan-500/40 active:scale-95 cursor-pointer"
+                    ? "bg-linear-to-r from-cyan-500 to-blue-500 hover:shadow-xl hover:shadow-cyan-500/40 active:scale-95 cursor-pointer"
                     : "bg-slate-300 cursor-not-allowed opacity-50"
                 }`}
               >

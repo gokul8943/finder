@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ProductCard } from "../components/ProductCard";
 import { recommendedPhones } from "../lib/types";
+import { useLocation } from "react-router-dom";
 
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
@@ -18,6 +19,9 @@ function Footer() {
 // ─── ProductView ──────────────────────────────────────────────────────────────
 
 const ProductView = () => {
+  const location = useLocation();
+  const displayPhones = location.state?.data || recommendedPhones;
+
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -57,9 +61,14 @@ const ProductView = () => {
 
           {/* ── Cards grid ── */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
-            {recommendedPhones.map((phone, index) => (
-              <ProductCard key={phone.rank} phone={phone} index={index} />
-            ))}
+            {displayPhones.map((phone: any, index: number) => {
+              const safePhone = {
+                ...phone,
+                badgeColor: phone.badgeColor || ["emerald", "sky", "amber", "violet"][index % 4],
+                badge: phone.badge || (index === 0 ? "Best Match" : index === 1 ? "Top Alternate" : "Great Value")
+              };
+              return <ProductCard key={phone.rank || index} phone={safePhone} index={index} />;
+            })}
           </div>
         </div>
       </main>
