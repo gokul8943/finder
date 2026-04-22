@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import ProductView from "./pages/ProductView";
 import Generate from "./pages/Generate";
 import "@/styles/animation.css";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/products" element={<ProductView />} />
         <Route path="/generate" element={<Generate />} />
       </Routes>
