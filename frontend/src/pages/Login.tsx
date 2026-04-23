@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button"
+import loginImg from "@/assets/Home/Gemini_Generated_Image_ljtmi6ljtmi6ljtm.png"
 
 const Login = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="mx-12 border-l border-gray-300 h-64"></div>
-      <div>
+    <div className="min-h-screen flex w-full overflow-hidden bg-cover bg-center bg-no-repeat items-center justify-center"
+      style={{ backgroundImage: `url(${loginImg})` }}
+    >
+      <div className="bg-cyan-50 p-20 rounded-lg">
         <h1 className="text-3xl font-bold mb-6">Login</h1>
         <form className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <label className="block text-sm font-medium text-gray-900">Email</label>
             <input
               type="email"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -30,13 +32,6 @@ const Login = () => {
             Login
           </Button>
         </form>
-      </div>
-      <div>
-        <img
-          src="/login-illustration.png"
-          alt="Login Illustration"
-          className="w-64 h-64 mb-8"
-        />
       </div>
     </div>
   )
