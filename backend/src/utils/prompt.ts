@@ -26,17 +26,18 @@ INSTRUCTIONS:
    - Brand (if specified)
 
 3. Select ONLY the top 3 or 4 smartphones.
-4. Rank them from BEST to LEAST BEST.
-5. For EACH selected phone, provide:
+4. CRITICAL: Ensure variety in your recommendations. Do NOT select multiple variants of the same phone model (e.g., do not recommend the same phone with just different colors or storage capacities). Each recommendation MUST be a distinctly different smartphone model.
+5. Rank them from BEST to LEAST BEST.
+6. For EACH selected phone, provide:
    - name
    - brand
    - price
    - key specifications (short)
    - why it is a good match (clear reasoning based on user preferences)
 
-6. DO NOT include phones that do not match the preferences.
-7. DO NOT hallucinate data. Use ONLY the provided data.
-8. Keep explanations concise and meaningful.
+7. DO NOT include phones that do not match the preferences.
+8. DO NOT hallucinate data. Use ONLY the provided data.
+9. Keep explanations concise and meaningful.
 
 -----------------------------
 OUTPUT FORMAT (STRICT JSON):
