@@ -29,9 +29,9 @@ const budgets = [
 ];
 
 const brands = [
-  { id: "apple", label: "Apple" },
+  { id: "realme", label: "Realme" },
   { id: "samsung", label: "Samsung" },
-  { id: "google", label: "Google" },
+  { id: "vivo", label: "Vivo" },
   { id: "oneplus", label: "OnePlus" },
   { id: "any", label: "Surprise Me (Any)" },
 ];
