@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ProductCard } from "../components/ProductCard";
 import { recommendedPhones } from "../lib/types";
-import { useLocation } from "react-router-dom";
-
-
-// ─── Footer ───────────────────────────────────────────────────────────────────
 
 function Footer() {
   return (
@@ -16,32 +13,32 @@ function Footer() {
   );
 }
 
-// ─── ProductView ──────────────────────────────────────────────────────────────
+const badgeDefaults = ["emerald", "sky", "amber", "violet"];
+const badgeLabelDefaults = ["Best Match", "Top Alternate", "Great Value", "Hidden Gem"];
 
 const ProductView = () => {
-  const location = useLocation();
-  const displayPhones = location.state?.data || recommendedPhones;
+  const location  = useLocation();
+  const navigate  = useNavigate();
+  const displayPhones = location.state?.data ?? recommendedPhones;
 
   return (
     <div
       className="min-h-screen flex flex-col"
       style={{
-        background:
-          "radial-gradient(ellipse 80% 50% at 50% -10%, #d1fae530 0%, transparent 70%), #f8fafc",
+        background: "radial-gradient(ellipse 80% 50% at 50% -10%, #d1fae530 0%, transparent 70%), #f8fafc",
         fontFamily: "'DM Sans', sans-serif",
       }}
     >
       <main className="flex-1 pt-16 sm:pt-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-10">
 
-          {/* ── Page header ── */}
+          {/* Page header */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-10 sm:mb-14"
           >
-
             <h1
               className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.08] mb-3"
               style={{ fontFamily: "'Sora', Georgia, serif" }}
@@ -59,17 +56,34 @@ const ProductView = () => {
             </p>
           </motion.div>
 
-          {/* ── Cards grid ── */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
-            {displayPhones.map((phone: any, index: number) => {
-              const safePhone = {
-                ...phone,
-                badgeColor: phone.badgeColor || ["emerald", "sky", "amber", "violet"][index % 4],
-                badge: phone.badge || (index === 0 ? "Best Match" : index === 1 ? "Top Alternate" : "Great Value")
-              };
-              return <ProductCard key={phone.rank || index} phone={safePhone} index={index} />;
-            })}
-          </div>
+          {/* Empty state */}
+          {displayPhones.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex flex-col items-center justify-center py-32 gap-4"
+            >
+              <p className="text-slate-500 text-lg font-medium">No phones found for your preferences.</p>
+              <button
+                onClick={() => navigate("/generate")}
+                className="px-6 py-3 rounded-2xl bg-cyan-500 text-white font-semibold hover:bg-cyan-600 transition-colors"
+              >
+                Try again
+              </button>
+            </motion.div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
+              {displayPhones.map((phone: any, index: number) => {
+                const safePhone = {
+                  ...phone,
+                  badgeColor: phone.badgeColor ?? badgeDefaults[index % badgeDefaults.length],
+                  badge:      phone.badge      ?? badgeLabelDefaults[index % badgeLabelDefaults.length],
+                };
+                return <ProductCard key={phone.rank ?? index} phone={safePhone} index={index} />;
+              })}
+            </div>
+          )}
+
         </div>
       </main>
 

@@ -1,13 +1,14 @@
-import axios from '../../constants/axios'
-import { useMutation } from "@tanstack/react-query";
+// services/productService.ts
 
-export const useProductPreference = (productId: string) => {
-    const mutation = useMutation({
-        mutationFn: async (preference: string) => {
-            const response = await axios.put(`/products/${productId}/preference`, { preference });
-            return response.data;
-        }
-    });
-    return mutation;
-}
+import axiosClient from "../../constants/axios";
+import type { ProductPreferenceParams, ProductPreferenceResponse } from "../../types/product.type";
 
+export const fetchProductsByPreferences = async (
+    params: ProductPreferenceParams
+): Promise<ProductPreferenceResponse> => {
+    const { data } = await axiosClient.get<ProductPreferenceResponse>(
+        "/products/preferences",
+        { params }
+    );
+    return data;
+};
