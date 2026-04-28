@@ -2,33 +2,13 @@ import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
-  Gamepad2, Camera, Battery, Smartphone,
   ChevronRight, ChevronLeft, Sparkles, Check, Cpu, Zap,
 } from "lucide-react";
 import { useProductsByPreferences } from "../hooks/useProducts";
 import type { ProductPreferenceParams } from "../types/product.type";
+import { useCases, budgets, brands } from "../utils/queryData";
 
-const useCases = [
-  { id: "gaming",    label: "Gaming Pro",       icon: Gamepad2,   desc: "High performance & refresh rate" },
-  { id: "camera",    label: "Photography",       icon: Camera,     desc: "Best-in-class camera system" },
-  { id: "battery",   label: "Battery Monster",   icon: Battery,    desc: "Multi-day battery life" },
-  { id: "balanced",  label: "Everyday Balance",  icon: Smartphone, desc: "Great all-around value" },
-];
 
-const budgets = [
-  { id: "budget",  label: "Budget",    range: "Under 15000",    color: "from-emerald-400 to-emerald-500" },
-  { id: "mid",     label: "Mid-Range", range: "15000 - 30000",  color: "from-blue-400 to-blue-500" },
-  { id: "premium", label: "Premium",   range: "30000 - 45000",  color: "from-indigo-400 to-indigo-500" },
-  { id: "ultra",   label: "Ultra",     range: "Over 45000",     color: "from-purple-400 to-purple-500" },
-];
-
-const brands = [
-  { id: "realme",  label: "Realme" },
-  { id: "samsung", label: "Samsung" },
-  { id: "vivo",    label: "Vivo" },
-  { id: "oneplus", label: "OnePlus" },
-  { id: "any",     label: "Surprise Me (Any)" },
-];
 
 // Map UI selections → API params
 const buildParams = (
@@ -40,9 +20,9 @@ const buildParams = (
 
   if (useCase) {
     const ucMap: Record<string, ProductPreferenceParams["useCase"]> = {
-      gaming:   "gaming",
-      camera:   "photography",
-      battery:  "battery",
+      gaming: "gaming",
+      camera: "photography",
+      battery: "battery",
       balanced: "balance",
     };
     params.useCase = ucMap[useCase];
@@ -50,10 +30,10 @@ const buildParams = (
 
   if (budget) {
     const budgetMap: Record<string, string> = {
-      budget:  "0-15000",
-      mid:     "15000-30000",
+      budget: "10000-15000",
+      mid: "15000-30000",
       premium: "30000-45000",
-      ultra:   "45000-500000",
+      ultra: "45000-500000",
     };
     params.budget = budgetMap[budget];
   }
@@ -68,10 +48,10 @@ const buildParams = (
 export default function Generate() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
-  const [selectedUseCase,  setSelectedUseCase]  = useState<string | null>(null);
-  const [selectedBudget,   setSelectedBudget]   = useState<string | null>(null);
-  const [selectedBrands,   setSelectedBrands]   = useState<string[]>([]);
-  const [loadingText,      setLoadingText]       = useState("Analyzing your preferences...");
+  const [selectedUseCase, setSelectedUseCase] = useState<string | null>(null);
+  const [selectedBudget, setSelectedBudget] = useState<string | null>(null);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [loadingText, setLoadingText] = useState("Analyzing your preferences...");
 
   // Build params only when on step 4 so the query key is stable
   const queryParams = useMemo(

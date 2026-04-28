@@ -65,7 +65,6 @@ export const getProductsByPreferences = async (req: Request, res: Response) => {
             budget?: string;    // e.g. "10000-30000"
             brand?: string;     // e.g. "Samsung"
         };
-        console.log(req.query);
         
 
         const products = await productService.getProductsByPreference(useCase, budget, brand);
