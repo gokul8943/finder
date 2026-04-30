@@ -83,9 +83,7 @@ export const getProductsByPreference = async (
         }
     }
 
-    console.log("MongoDB filter:", JSON.stringify(filter, null, 2));
-
-    const products = await productModel.find(filter).limit(10);
+    const products = await productModel.find(filter).sort({ field: -1 }).limit(10);
 
     if (products.length === 0 && useCase) {
         console.warn(`No products for useCase="${useCase}", falling back to brand/budget only`);

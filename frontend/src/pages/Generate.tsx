@@ -30,10 +30,14 @@ const buildParams = (
 
   if (budget) {
     const budgetMap: Record<string, string> = {
-      budget: "10000-15000",
-      mid: "15000-30000",
-      premium: "30000-45000",
-      ultra: "45000-500000",
+      budget: "10000-12000",
+      normal: "12000-15000",
+      mid_low: "15000-25000",
+      mid_high: "25000-30000",
+      premium: "30000-35000",
+      ultra: "35000-400000",
+      extreme: "400000-60000",
+      flagship: "60000-100000",
     };
     params.budget = budgetMap[budget];
   }
@@ -185,10 +189,10 @@ export default function Generate() {
               )}
 
               {step === 2 && (
-                <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {budgets.map((b) => (
                     <button key={b.id} onClick={() => setSelectedBudget(b.id)}
-                      className={`relative p-6 sm:p-8 rounded-3xl text-left transition-all duration-300 flex flex-col justify-between overflow-hidden group ${selectedBudget === b.id ? "shadow-2xl scale-100" : "scale-95 opacity-80 hover:scale-100 hover:opacity-100 shadow-md"}`}
+                      className={`relative p-3 sm:p-6 rounded-3xl text-left transition-all duration-300 flex flex-col justify-between overflow-hidden group ${selectedBudget === b.id ? "shadow-2xl scale-100" : "scale-95 opacity-80 hover:scale-100 hover:opacity-100 shadow-md"}`}
                     >
                       <div className={`absolute inset-0 bg-linear-to-br ${b.color} opacity-10`} />
                       {selectedBudget === b.id && <motion.div layoutId="budget-outline" className="absolute inset-0 border-4 border-cyan-500 rounded-3xl z-10" />}
