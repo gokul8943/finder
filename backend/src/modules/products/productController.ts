@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { AuthRequest } from '../../middleware/Auth';
 import * as productService from '../products/productServices';
 import { pickBestSmartPhoneService } from '../../services/geminiServices';
+import { parseBudget } from '../../utils/budgetParse';
 
 export const getProducts = async (req: Request, res: Response) => {
     try {
@@ -61,25 +62,34 @@ export const updateProduct = async (req: AuthRequest, res: Response) => {
 export const getProductsByPreferences = async (req: Request, res: Response) => {
     try {
         const { useCase, budget, brand } = req.query as {
-            useCase?: string;   // gaming | photography | battery| balance
-            budget?: string;    // e.g. "10000-30000"
-            brand?: string;     // e.g. "Samsung"
+            useCase?: string;
+            budget?: string;
+            brand?: string;
         };
-        
+
+        // Parse budget into clean numbers HERE — never pass the raw string to AI
+        const budgetRange = parseBudget(budget);
 
         const products = await productService.getProductsByPreference(useCase, budget, brand);
-        console.log('products',products);
-        
-        const aiResponse = await pickBestSmartPhoneService(req.query, products);
+
+        // Pass structured preferences — not raw req.query
+        const userPreferences = {
+            useCase,
+            budget: budgetRange,   // ← clean object, not "35000-400000"
+            brand,
+        };
+
+        const aiResponse = await pickBestSmartPhoneService(userPreferences, products);
 
         res.status(200).json({
             message: "Products retrieved successfully based on user preferences",
             data: aiResponse,
         });
     } catch (error) {
-        res.status(500).json({
-            message: "Failed to retrieve products based on user preferences",
-            error,
+        const message = error instanceof Error ? error.message : "Unknown error";
+        res.status(503).json({
+            message: "Failed to retrieve AI recommendations",
+            error: message,
         });
-    }
+    } 
 };

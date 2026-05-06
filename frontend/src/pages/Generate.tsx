@@ -35,8 +35,8 @@ const buildParams = (
       mid_low: "15000-25000",
       mid_high: "25000-30000",
       premium: "30000-35000",
-      ultra: "35000-400000",
-      extreme: "400000-60000",
+      ultra: "35000-40000",
+      extreme: "40000-60000",
       flagship: "60000-100000",
     };
     params.budget = budgetMap[budget];
